@@ -1,8 +1,11 @@
 import math
+
 from helper.printformatter import pt
 
 """
 Topics:
+- type()
+- truth testing
 - string datatype and its methods
 - splicing string
 - number datatype
@@ -10,8 +13,63 @@ Topics:
 - user input
 """
 
+
+@pt
+def general_data_types():
+    # type() can be used to display the 'type'
+    print(f'General data types: \n'
+          f'Integer has type {type(5)}\n'
+          f'Floating has type {type(2.5)}\n'
+          f'String has type {type("hello world")}\n'
+          f'List has type {type([1, 2, 3, 4])}\n'
+          f'Tuple has type {type((1, 2, 4, 5, 6))}\n'
+          f'Dictionary has type {type({"one": 1, "two": 2})}\n'
+          f'Sets has type {type({1, 2, 3, 3})}\n'
+          f'Boolean has type {type(True)}')
+
+
+@pt
+def truth_test():
+    print(f"""These all are false
+    False -> {bool(False)}
+    None -> {bool(None)}
+    0 -> {bool(0)}
+    0.0 -> {bool(0.0)}
+    "" -> {bool("")}
+    [] -> {bool([])}
+    {{}} -> {bool({})}
+    () -> {bool(())}
+    set() -> {bool(set())}
+    range(0) -> {bool(range(0))}
+    custom -> {bool(CustomFalse())}
+    """)
+
+
 @pt
 def string_datatype():
+    # strings and bytes are not directly interchangeable
+    # strings contains unicode, bytes are raw 8-bit values
+
+    my_byte = bytes([0x41, 0x42, 0x43, 0x44])
+    my_byte_decoded = my_byte.decode('utf-8')
+    my_str = "This is a string"
+    my_str_encoded = my_str.encode('utf-8')
+
+    print(f'Byte value   : {my_byte} has type {type(my_byte)}')
+    print(f'Decoded Byte value   : {my_byte_decoded} has type {type(my_byte_decoded)}')
+    print(f'String value : {my_str} has type {type(my_str)}')
+    print(f'Encoded String value : {my_str_encoded} has type {type(my_str_encoded)}')
+
+    # String is immutable
+    # hit error: 'str' object does not support item assignment
+    try:
+        my_str[0] = "J"
+    except TypeError as err:
+        print(err)
+
+
+@pt
+def string_method():
     word = "HelLo wOrlD. "
     word2 = "another great day, another great night, and yet another workday"
     string_list = ["one", "two"]
@@ -37,6 +95,7 @@ def string_access():
     print(word[0])
     print(word[:])
     print(word[1:-1])
+    print(word[::2])  # start:stop:step
     print(word[::-1])  # read with [:] but step -1 each time
 
     # looping string as each char
@@ -78,8 +137,20 @@ def datatype_conversion_input():
     print(f"result of {num1} divided by {num2} = {result}")
 
 
+class CustomFalse:
+    # instance of class that overwrite either __bool__ or __len__ with False/0 will be marked as False in bool(...)
+    def __bool__(self):
+        return False
+
+    def __len__(self):
+        return 0
+
+
 def main():
+    general_data_types()
+    truth_test()
     string_datatype()
+    string_method()
     string_access()
     number_basic()
     datatype_conversion()

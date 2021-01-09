@@ -29,8 +29,10 @@ deque : double-ended list object
 
 
 @pt
-def list_basic():
+def list_create():
     # list can have any data types (including user-defined or function)
+
+    # method 1 - list = [...]
     the_list = [1, "Hello", True, 5.7, None, MyData(), my_func()]
 
     print("The list data : ")
@@ -38,21 +40,37 @@ def list_basic():
         print(i, end="  ||  ")
     print()
 
-    print("\n - List access - ")
+    # method 2 - ls = list0.copy()
+    copy_list = the_list.copy()
+    print(copy_list)
+
+    # method 3 - ls = list(list0)
+    copy_list2 = list(the_list)
+    print("Copied list #2 : ", copy_list2)
+
+
+@pt
+def list_access():
+    # use list.index(...) to find item in list. ValueError if not found.
+    the_list = [1, "Hello", True, 5.7, None, MyData(), my_func()]
     try:
-        print("index of 5.7 : ", the_list.index(51))
+        print("index of 51 : ", the_list.index(51))
     except ValueError as err:
         print(err)
 
-    the_list += ["Hello", True, True]
-    print("count True in the_list = ", the_list.count(True))  # 1 is also True, hence the result is 4
+    print("3rd index in the list : ", the_list[3])
 
-    # add to list with insert and append
-    print("\n - List modification - ")
 
+@pt
+def list_update():
+    the_list = [1, "Hello", True, 5.7, None, MyData(), my_func()]
+    print("original list = ", the_list)
+
+    # list.append()
     the_list.append("New Data")
     print("the_list = ", the_list)
 
+    # list.insert() -> insert to specific index
     the_list.insert(3, "index-3")
     print("new_list = ", the_list)
 
@@ -65,6 +83,32 @@ def list_basic():
     the_list.extend(another_list2)  # similar to += , however we can chain this other function
     print("the_list = ", the_list)
 
+
+@pt
+def list_deletion():
+    the_list = [1, "Hello", True, 5.7, None, MyData(), my_func()]
+
+    # list.remove()
+    the_list.remove(5.7)
+    print("the_list = ", the_list)
+
+    # list.pop() -> remove and return last item in the list
+    print("Pop the list : ", the_list.pop())
+    print("the_list = ", the_list)
+
+    # list.clear() -> delete everything, returns empty list []
+    the_list.clear()
+    print("the_list = ", the_list)
+
+
+@pt
+def list_methods():
+    the_list = [1, "Hello", True, 5.7, None, MyData(), my_func()]
+    the_list += ["Hello", True, True]
+
+    # list.count() to retrieve number of occurance
+    print("count True in the_list = ", the_list.count(True))  # 1 is also True, hence the result is 4
+
     # sorting the list with sort() and sorted(...)
     print("\n - List sorting - ")
     the_list2 = [12, 6, 1, 2, -6, 90, 0, -100]
@@ -73,17 +117,6 @@ def list_basic():
     print("sorted_the_list2   = ", sorted_the_list2)
     the_list2.sort()  # in-place sorting
     print("sorted the_list2   = ", the_list2)
-
-    # remove list with pop, remove and clear
-    print("\n - List deletion - ")
-    the_list.remove(5.7)
-    print("the_list = ", the_list)
-
-    print("Pop the list : ", the_list.pop())
-    print("the_list = ", the_list)
-
-    the_list.clear()
-    print("the_list = ", the_list)
 
 
 @pt
@@ -108,7 +141,11 @@ def my_func():
 
 
 def main():
-    list_basic()
+    list_create()
+    list_access()
+    list_update()
+    list_deletion()
+    list_methods()
     tuple_basic()
 
 

@@ -9,10 +9,17 @@ defaultdict : class that enable dictionary to have default value (if non-exist)
 @pt
 def dict_create():
     # dictionary is K:V pair, Key must be unique and it can be of any data-types
+    # method 1 - literal
     the_dict = {1: "one", "dua": "two", "is_human": True, 0: None}
     print("the_dict = ", the_dict)
+    the_dict["tiga"] = "three"
+    print("updated the_dict = ", the_dict)
     print(the_dict.get("dua"))
     print(the_dict[1])
+
+    # method 2 - dict function
+    the_dict_2 = dict(satu=1, dua="two", is_human=True)
+    print("the_dict_2 = ", the_dict_2)
 
     copy_dict = the_dict.copy()
     print("copied_dict = ", copy_dict)
@@ -34,6 +41,7 @@ def dict_access():
     for (k, v) in the_dict.items():
         print(f"Key: {k} -> {v}")
 
+    # dict.keys() and dict.values()
     print("\n- iterate dict without items() -")
     print("All keys : ", the_dict.keys())
     print("All vals : ", the_dict.values())
@@ -44,43 +52,32 @@ def dict_access():
 @pt
 def dict_update():
     the_dict = {1: "one", "dua": "two", "is_human": True, 0: None}
+    print("Original dict = ", the_dict)
     the_dict[1] = "uno"
     print(the_dict)
 
 
 @pt
 def dict_deletion():
-    the_list = [1, "Hello", True, 5.7, None, MyData(), my_func()]
+    the_dict = {1: "one", "dua": "two", "is_human": True, 0: None}
 
-    # list.remove()
-    the_list.remove(5.7)
-    print("the_list = ", the_list)
+    # dict.del()
+    del the_dict["is_human"]  # delete this specific K:V , del the_dict will delete entire dictionary
+    print("the_dict = ", the_dict)
 
-    # list.pop() -> remove and return last item in the list
-    print("Pop the list : ", the_list.pop())
-    print("the_list = ", the_list)
+    print(len(the_dict))
+    # dict.pop() -> remove and return last item in the dictionary
+    print("Pop the dict : ", the_dict.pop("dua"))
+    print("the_dict after pop() = ", the_dict)
 
     # list.clear() -> delete everything, returns empty list []
-    the_list.clear()
-    print("the_list = ", the_list)
+    the_dict.clear()
+    print("the_dict after clear() = ", the_dict)
 
 
 @pt
 def dict_methods():
-    the_list = [1, "Hello", True, 5.7, None, MyData(), my_func()]
-    the_list += ["Hello", True, True]
-
-    # list.count() to retrieve number of occurance
-    print("count True in the_list = ", the_list.count(True))  # 1 is also True, hence the result is 4
-
-    # sorting the list with sort() and sorted(...)
-    print("\n - List sorting - ")
-    the_list2 = [12, 6, 1, 2, -6, 90, 0, -100]
-    sorted_the_list2 = sorted(the_list2)
-    print("original the_list2 = ", the_list2)
-    print("sorted_the_list2   = ", sorted_the_list2)
-    the_list2.sort()  # in-place sorting
-    print("sorted the_list2   = ", the_list2)
+    pass
 
 
 class MyData:

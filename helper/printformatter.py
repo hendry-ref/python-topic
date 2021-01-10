@@ -5,7 +5,7 @@ def pt(func):
         print("\n" + "-" * len(func.__name__))
         print(func.__name__)
         print("-" * len(func.__name__))
-        func()
+        func(*args, **kwargs)
         print("")
 
     return inner

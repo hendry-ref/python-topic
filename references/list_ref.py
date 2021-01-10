@@ -3,7 +3,7 @@ from helper.printformatter import pt
 """
 Collections can have multiple value of different data-types in it's sequence.
 
-List []  : mutable, ordered, non-unique sequence
+List []  : mutable, ordered, allows duplicate sequence
     - C = append(v), insert (i, v) , ls = [0] * 5 , ls += ls2 , ls.extend(ls2)
     - R = list[i] , list[slice:slice]
     - U = list[i] = v
@@ -47,6 +47,24 @@ def list_create():
     # method 3 - ls = list(list0)
     copy_list2 = list(the_list)
     print("Copied list #2 : ", copy_list2)
+
+    # method 4 - list comprehension
+    the_list_comp = [i for i in the_list]
+    print("Comprehension list : ", the_list_comp)
+
+    print("\n - Grid (2D) list - ")
+    the_2d_list = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+        ["Data"]
+    ]
+    print(the_2d_list)
+    print(the_2d_list[3][0])
+    for row in the_2d_list:
+        print(f"{row} has length = {len(row)}")
+        for col in row:
+            print(f"  > {col}")
 
 
 @pt
@@ -117,6 +135,9 @@ def list_methods():
     print("sorted_the_list2   = ", sorted_the_list2)
     the_list2.sort()  # in-place sorting
     print("sorted the_list2   = ", the_list2)
+
+    the_list.reverse()
+    print("reversed list = ", the_list)
 
 
 @pt
